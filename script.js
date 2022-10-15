@@ -5,36 +5,40 @@ $("#currentDay").text(today);
 
 // set up start time
 var hour = $('.hour');
-var time = 8;
+var startTime = 8;
 
 for (var i=0; i<hour.length; i++) {
-    if (time<12) {
-        hour[i].innerHTML = time + ':00';
-        time += 1;
-    } else if (time ===12) {
-        hour[i].innerHTML = time + ':00';
-        time += 1;
-    } else if (time>12) {
-        hour[i].innerHTML = time + ':00';
-        time += 1;
+    if (startTime<12) {
+        hour[i].innerHTML = startTime + ':00';
+        startTime += 1;
+        console.log(startTime);
+    } else if (startTime ===12) {
+        hour[i].innerHTML = startTime + ':00';
+        startTime += 1;
+        console.log(startTime);      
+    } else if (startTime>12) {
+        hour[i].innerHTML = startTime + ':00';
+        startTime += 1;
+        console.log(startTime);
     }
 }
 
-var timeBlock = $(".hour");
+
+// set up color assign per time
 var currentTime = moment().format("H");
     console.log(currentTime);
 
-$.each(timeBlock, function (i,hour) {
-    var time = parseInt($(this).attr("id"));
-    if (time === currentTime) {
-        $(this).next().addClass("present");
-    } else if (time > currentTime) {
-        $(this).next().addClass("future");
-    } else if (time < currentTime) {
-        $(this).next().addClass("past");
+    if (startTime === currentTime) {
+        $('.description').addClass("present");
+        $('.description').removeClass("future", "past");
+        console.log(startTime === currentTime);
+    } else if (startTime > currentTime) {
+        $('.description').addClass("future");
+        $('.description').removeClass("present", "past");
+    } else if (startTime < currentTime) {
+        $('.description').addClass("past");
+        $('.description').removeClass("present", "future");
     }
-});
-
 
 // save events at local storage
 var savebtn = $('.saveBtn');

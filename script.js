@@ -27,12 +27,12 @@ var currentTime = moment().format("H");
     console.log(currentTime);
 
 for (var i=0; i<hour.length; i++) {
-    if ('.hour' == currentTime) {
+    if (hour[i].innerHTML == currentTime) {
         $('.description').addClass(".present");
-    } else if ('.hour' > currentTime) {
+    } else if (hour[i].innerHTML > currentTime) {
         $('.description').removeClass("present", "past");
         $('.description').addClass("future");
-    } else if ('.hour' < currentTime) {
+    } else if (hour[i].innerHTML < currentTime) {
         $('.description').removeClass("present", "future");
         $('.description').addClass("past");
     }
@@ -71,5 +71,4 @@ function initiateBeforeRender () {
     }
     rendertodoList();
 }
-
 

@@ -9,7 +9,7 @@ Each work schedule will be color coded based on the current time in three way: p
 Also, save button will let the works saved to local storage so it can remain after refresh.
 
 ## Screenshot
-<img src="./assets/images/screenshot.png" />
+<img src="./Assets/images/screenshot.png" />
 
 ## Deployed application link
 https://d0kd0.github.io/don-t_forget

@@ -9,37 +9,40 @@ var startTime = 8;
 
 for (var i=0; i<hour.length; i++) {
     if (startTime<12) {
-        hour[i].innerHTML = startTime;
+        hour[i].innerHTML = startTime + ':00';
         startTime += 1;
         console.log(startTime);
     } else if (startTime ===12) {
-        hour[i].innerHTML = startTime;
+        hour[i].innerHTML = startTime + ':00';
         startTime += 1;
         console.log(startTime);      
     } else if (startTime>12) {
-        hour[i].innerHTML = startTime;
+        hour[i].innerHTML = startTime + ':00';
         startTime += 1;
         console.log(startTime);
     }
 }
 
-var currentTime = moment().format("H");
+// colour coding per hour
+var currentTime = parseInt(moment().format("H"));
     console.log(currentTime);
 
-for (var i=0; i<hour.length; i++) {
-    if (hour[i].innerHTML == currentTime) {
-        $('.description').addClass(".present");
-    } else if (hour[i].innerHTML > currentTime) {
-        $('.description').removeClass("present", "past");
-        $('.description').addClass("future");
-    } else if (hour[i].innerHTML < currentTime) {
-        $('.description').removeClass("present", "future");
-        $('.description').addClass("past");
+    for (var i=0; i<hour.length; i++) {
+        var blockTime = parseInt(hour[i].innerHTML);
+        var blockId =  $('#'+(i+8))
+        
+        if (blockTime == currentTime) {
+           blockId.addClass("present");
+        } else if (blockTime > currentTime) {
+            blockId.removeClass("present");
+            blockId.addClass("future");
+        } else if (blockTime < currentTime) {
+            blockId.removeClass("present");
+            blockId.addClass("past");
+        }
     }
-}
 
-
-// save events at local storage
+// save events to local storage
 var savebtn = $('.saveBtn');
 var textarea = $('.description');
 var listobjects = [];
@@ -63,7 +66,7 @@ function storetodo () {
     localStorage.setItem("listobjects", JSON.stringify(listobjects));
 }
 
-function initiateBeforeRender () {
+function init () {
     if (lastlist !== null) {
         listobjects = lastlist;
     } else {
@@ -72,3 +75,15 @@ function initiateBeforeRender () {
     rendertodoList();
 }
 
+var lastlist = JSON.parse(localStorage.getItem("listobjects"));
+
+    function rendertodoList() {
+        for(var i=0; i<hour.length; i++) {
+            for(var j=0; j<lastlist.length; j++){
+            if(hour[i].innerHTML == lastlist[j].time) {
+                textarea[i].innerHTML = lastlist[j].todo;
+            }
+        }}
+    };
+    
+init();

@@ -23,22 +23,21 @@ for (var i=0; i<hour.length; i++) {
     }
 }
 
-
-// set up color assign per time
 var currentTime = moment().format("H");
     console.log(currentTime);
 
-    if (startTime === currentTime) {
-        $('.description').addClass("present");
-        $('.description').removeClass("future", "past");
-        console.log(startTime === currentTime);
-    } else if (startTime > currentTime) {
-        $('.description').addClass("future");
+for (var i=0; i<hour.length; i++) {
+    if (hour[i] == currentTime) {
+        $('.description').addClass(".present");
+    } else if (hour[i] > currentTime) {
         $('.description').removeClass("present", "past");
-    } else if (startTime < currentTime) {
-        $('.description').addClass("past");
+        $('.description').addClass("future");
+    } else if (hour[i] < currentTime) {
         $('.description').removeClass("present", "future");
+        $('.description').addClass("past");
     }
+}
+
 
 // save events at local storage
 var savebtn = $('.saveBtn');
@@ -72,6 +71,5 @@ function initiateBeforeRender () {
     }
     rendertodoList();
 }
-
 
 

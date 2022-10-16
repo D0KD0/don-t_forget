@@ -9,15 +9,15 @@ var startTime = 8;
 
 for (var i=0; i<hour.length; i++) {
     if (startTime<12) {
-        hour[i].innerHTML = startTime + ':00';
+        hour[i].innerHTML = startTime;
         startTime += 1;
         console.log(startTime);
     } else if (startTime ===12) {
-        hour[i].innerHTML = startTime + ':00';
+        hour[i].innerHTML = startTime;
         startTime += 1;
         console.log(startTime);      
     } else if (startTime>12) {
-        hour[i].innerHTML = startTime + ':00';
+        hour[i].innerHTML = startTime;
         startTime += 1;
         console.log(startTime);
     }
@@ -27,12 +27,12 @@ var currentTime = moment().format("H");
     console.log(currentTime);
 
 for (var i=0; i<hour.length; i++) {
-    if (hour[i] == currentTime) {
+    if ('.hour' == currentTime) {
         $('.description').addClass(".present");
-    } else if (hour[i] > currentTime) {
+    } else if ('.hour' > currentTime) {
         $('.description').removeClass("present", "past");
         $('.description').addClass("future");
-    } else if (hour[i] < currentTime) {
+    } else if ('.hour' < currentTime) {
         $('.description').removeClass("present", "future");
         $('.description').addClass("past");
     }
